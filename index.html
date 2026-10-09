@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عيد ميلاد سعيد</title>
+  <style>
+    :root {
+      --bg1: #dfeeff;
+      --bg2: #fef4fb;
+      --pink: #ff87b7;
+      --pink-dark: #ff5d9e;
+      --blue: #8dd8ff;
+      --blue-dark: #4ea7df;
+      --gold: #ffd76b;
+      --gold-dark: #f9b932;
+      --white: #ffffff;
+      --text: #3c4a5d;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      font-family: "Tahoma", "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    body {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: scale(1.04);
+    }
+
+    .start-card {
+      position: relative;
+      width: min(90vw, 760px);
+      height: min(88vh, 760px);
+      background: rgba(255,255,255,0.55);
+      border: 5px solid rgba(255,255,255,0.6);
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(100, 130, 180, 0.18);
+      backdrop-filter: blur(4px);
+    }
+
+    .cloud {
+      position: absolute;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      box-shadow: 30px 20px 0 8px rgba(255,255,255,0.7),
+                  -22px 18px 0 2px rgba(255,255,255,0.6);
+      animation: floatCloud 7s ease-in-out infinite alternate;
+    }
+
+    .cloud.one { width: 170px; height: 70px; top: 48px; left: 70px; }
+    .cloud.two { width: 150px; height: 60px; top: 110px; right: 90px; animation-delay: 1.2s; }
+    .cloud.three { width: 180px; height: 72px; bottom: 120px; left: 80px; animation-delay: 0.8s; }
+
+    @keyframes floatCloud {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-18px); }
+    }
+
+    .title {
+      position: absolute;
+      top: 42px;
+      width: 100%;
+      text-align: center;
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      font-weight: 900;
+      color: #5fa9e6;
+      text-shadow: 0 4px 0 rgba(255,255,255,0.7);
+      letter-spacing: 1px;
+    }
+
+    .kitty-wrap {
+      position: absolute;
+      left: 50%;
+      top: 53%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      height: 360px;
+    }
+
+    .kitty {
+      position: absolute;
+      inset: 0;
+      animation: bob 3s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .head {
+      position: absolute;
+      width: 220px;
+      height: 200px;
+      background: #f6f6f8;
+      border: 2px solid #dce4ef;
+      border-radius: 48% 48% 48% 48%;
+      left: 50%;
+      top: 38px;
+      transform: translateX(-50%);
+      box-shadow: inset -12px -10px 0 rgba(255,255,255,0.7);
+    }
+
+    .ear {
+      position: absolute;
+      width: 58px;
+      height: 66px;
+      background: #f4f4f7;
+      border: 2px solid #dfe9f6;
+      top: -24px;
+      border-radius: 50% 50% 42% 42%;
+      z-index: -1;
+    }
+
+    .ear.left { left: 30px; transform: rotate(-18deg); }
+    .ear.right { right: 30px; transform: rotate(18deg); }
+
+    .ear::before {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 26px;
+      background: #ffc6d9;
+      border-radius: 50%;
+      left: 50%;
+      top: 16px;
+      transform: translateX(-50%);
+    }
+
+    .eye {
+      position: absolute;
+      width: 18px;
+      height: 26px;
+      background: #262d3a;
+      border-radius: 50%;
+      top: 90px;
+      animation: blink 5s infinite;
+    }
+
+    .eye.left { left: 70px; }
+    .eye.right { right: 70px; }
+
+    @keyframes blink {
+      0%, 45%, 47%, 100% { transform: scaleY(1); }
+      46% { transform: scaleY(0.12); }
+    }
+
+    .nose {
+      position: absolute;
+      width: 26px;
+      height: 20px;
+      background: #ffb7c9;
+      left: 50%;
+      top: 112px;
+      transform: translateX(-50%);
+      border-radius: 50% 50% 60% 60%;
+    }
+
+    .mouth {
+      position: absolute;
+      width: 88px;
+      height: 42px;
+      left: 50%;
+      top: 130px;
+      transform: translateX(-50%);
+      border-bottom: 5px solid #4d5b75;
+      border-radius: 0 0 60px 60px;
+    }
+
+    .whiskers {
+      position: absolute;
+      width: 120px;
+      height: 80px;
+      left: 50%;
+      top: 120px;
+      transform: translateX(-50%);
+    }
+
+    .whiskers span {
+      position: absolute;
+      width: 90px;
+      height: 3px;
+      background: #b9c8d8;
+      border-radius: 3px;
+      top: 25px;
+    }
+
+    .whiskers .w1 { left: -80px; transform: rotate(-8deg); }
+    .whiskers .w2 { left: -80px; top: 42px; transform: rotate(8deg); }
+    .whiskers .w3 { right: -80px; transform: rotate(8deg); }
+    .whiskers .w4 { right: -80px; top: 42px; transform: rotate(-8deg); }
+
+    .bow {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .bow::before,
+    .bow::after {
+      content: "";
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      background: #ff709f;
+      border-radius: 50%;
+      top: 10px;
+      box-shadow: inset 0 -5px 0 rgba(255,255,255,0.2);
+    }
+
+    .bow::before { left: 5px; }
+    .bow::after { right: 5px; }
+
+    .bow-center {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background: #ff4d8f;
+      border-radius: 50%;
+      left: 50%;
+      top: 36px;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .body {
+      position: absolute;
+      width: 180px;
+      height: 170px;
+      background: #f5f5f7;
+      border: 2px solid #dfeaf5;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      border-radius: 48% 48% 42% 42%;
+      z-index: 1;
+    }
+
+    .arm {
+      position: absolute;
+      width: 54px;
+      height: 86px;
+      background: #f1f1f3;
+      border: 2px solid #dfeaf5;
+      border-radius: 25px;
+      top: 170px;
+    }
+
+    .arm.left {
+      left: 45px;
+      transform: rotate(18deg);
+    }
+
+    .arm.right {
+      right: 45px;
+      transform: rotate(-18deg);
+    }
+
+    .button-start {
+      position: absolute;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: none;
+      background: linear-gradient(180deg, #ff8bc0, #ff5da1);
+      color: white;
+      font-weight: 900;
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      padding: 18px 42px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 14px 28px rgba(255, 110, 170, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      user-select: none;
+    }
+
+    .button-start:hover {
+      transform: translateX(-50%) translateY(-2px) scale(1.02);
+      box-shadow: 0 18px 34px rgba(255, 110, 170, 0.52);
+    }
+
+    .button-start:active {
+      transform: translateX(-50%) scale(0.97);
+    }
+
+    .heart-scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #e8f8ff 0%, #fff8fd 100%);
+    }
+
+    .heart-box {
+      position: relative;
+      width: min(85vw, 620px);
+      height: min(72vh, 620px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .heart-wrap {
+      position: relative;
+      width: 260px;
+      height: 240px;
+      display: grid;
+      place-items: center;
+      margin-top: 20px;
+    }
+
+    .heart {
+      position: relative;
+      width: 210px;
+      height: 210px;
+      background: linear-gradient(180deg, #ff8ab0, #ff5da0);
+      transform: rotate(-45deg);
+      border-radius: 18px 0 0 0;
+      box-shadow: 0 20px 35px rgba(255, 108, 170, 0.3);
+      overflow: hidden;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      background: inherit;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .heart::before {
+      left: 0;
+      top: -105px;
+    }
+
+    .heart::after {
+      left: 105px;
+      top: 0;
+    }
+
+    .heart-fill {
+      position: absolute;
+      inset: 0;
+      transform: scaleY(0);
+      transform-origin: bottom center;
+      background: linear-gradient(180deg, #ffd7e7, #ff7aa8);
+      transition: transform 0.25s ease;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .heart-fill::before,
+    .heart-fill::after {
+      content: "";
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      background: inherit;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .heart-fill::before {
+      left: 0;
+      top: -105px;
+    }
+
+    .heart-fill::after {
+      left: 105px;
+      top: 0;
+    }
+
+    .heart-button {
+      border: none;
+      background: linear-gradient(180deg, #ffb0d0, #ff7fae);
+      color: white;
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      font-weight: 900;
+      border-radius: 28px;
+      padding: 16px 32px;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(255, 137, 180, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      min-width: 220px;
+    }
+
+    .heart-button:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 20px 36px rgba(255, 137, 180, 0.46);
+    }
+
+    .progress-box {
+      height: 22px;
+      width: min(70vw, 320px);
+      background: rgba(255,255,255,0.8);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 141, 180, 0.48);
+      box-shadow: inset 0 2px 10px rgba(255, 141, 180, 0.15);
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #ffbcd8, #ff6aa5);
+      border-radius: 999px;
+      transition: width 0.2s ease;
+    }
+
+    .progress-text {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #ff5c9a;
+    }
+
+    .message-box {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(90vw, 760px);
+      min-height: 430px;
+      background: rgba(255,255,255,0.82);
+      border: 4px solid rgba(255, 211, 83, 0.6);
+      border-radius: 30px;
+      box-shadow: 0 24px 50px rgba(175, 145, 200, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 24px;
+      text-align: center;
+      backdrop-filter: blur(2px);
+    }
+
+    .message-box h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0 0 10px;
+      color: #ff7ea8;
+      text-shadow: 0 2px 0 rgba(255,255,255,0.7);
+    }
+
+    .message-box p {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      line-height: 2.1;
+      margin: 0;
+      max-width: 680px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .star-scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #f5f4ff 0%, #fff6fd 100%);
+    }
+
+    .star-button-wrap {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      display: grid;
+      place-items: center;
+    }
+
+    .star-button {
+      width: 150px;
+      height: 150px;
+      border: none;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #ffe38a, #ffca38);
+      color: #fff;
+      font-size: 4.5rem;
+      cursor: pointer;
+      box-shadow: 0 16px 32px rgba(251, 190, 58, 0.4);
+      animation: pulse 1.5s ease-in-out infinite;
+      transition: transform 0.2s ease;
+    }
+
+    .star-button:hover {
+      transform: scale(1.06);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .final-card {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #fffaf4 0%, #f5f3ff 100%);
+    }
+
+    .final-message {
+      width: min(92vw, 840px);
+      background: rgba(255,255,255,0.85);
+      border: 4px solid rgba(255, 204, 94, 0.6);
+      border-radius: 36px;
+      box-shadow: 0 30px 60px rgba(150, 160, 200, 0.18);
+      padding: 34px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-message::before,
+    .final-message::after {
+      content: "✦";
+      position: absolute;
+      font-size: 3rem;
+      color: rgba(255, 198, 60, 0.45);
+      top: 18px;
+    }
+
+    .final-message::before { left: 32px; }
+    .final-message::after { right: 32px; }
+
+    .final-message h2 {
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      color: #ff75a8;
+      margin: 0 0 18px;
+    }
+
+    .final-message p {
+      margin: 0;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      line-height: 2.2;
+      color: #4a5368;
+      font-weight: 700;
+    }
+
+    .sparkles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 219, 94, 0.9);
+      clip-path: polygon(50% 0%, 61% 38%, 100% 50%, 61% 62%, 50% 100%, 39% 62%, 0% 50%, 39% 38%);
+      animation: sparkleFall linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes sparkleFall {
+      0% {
+        transform: translateY(-30px) scale(0.4) rotate(0deg);
+        opacity: 0;
+      }
+      20% { opacity: 1; }
+      100% {
+        transform: translateY(600px) scale(1.2) rotate(200deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .kitty-wrap { transform: translate(-50%, -50%) scale(0.82); }
+      .button-start { bottom: 34px; }
+      .final-message { padding: 26px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scene start-card" id="startScene">
+    <div class="cloud one"></div>
+    <div class="cloud two"></div>
+    <div class="cloud three"></div>
+
+    <div class="title">بيبي بلو</div>
+
+    <div class="kitty-wrap">
+      <div class="kitty">
+        <div class="head">
+          <div class="ear left"></div>
+          <div class="ear right"></div>
+          <div class="bow">
+            <div class="bow-center"></div>
+          </div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="nose"></div>
+          <div class="mouth"></div>
+          <div class="whiskers">
+            <span class="w1"></span>
+            <span class="w2"></span>
+            <span class="w3"></span>
+            <span class="w4"></span>
+          </div>
+        </div>
+
+        <div class="body"></div>
+        <div class="arm left"></div>
+        <div class="arm right"></div>
+      </div>
+    </div>
+
+    <button class="button-start" id="startBtn">اضغط هنا</button>
+  </div>
+
+  <div class="scene heart-scene hidden" id="heartScene">
+    <div class="sparkles" id="sparkles"></div>
+    <div class="heart-box">
+      <div class="heart-wrap">
+        <div class="heart">
+          <div class="heart-fill" id="heartFill"></div>
+        </div>
+      </div>
+      <button class="heart-button" id="heartBtn">اضغط على القلب</button>
+      <div class="progress-text" id="progressText">0%</div>
+      <div class="progress-box">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene star-scene hidden" id="starScene">
+    <div class="star-button-wrap">
+      <button class="star-button" id="starBtn">✦</button>
+    </div>
+  </div>
+
+  <div class="scene final-card hidden" id="finalScene">
+    <div class="final-message">
+      <h2>الى اغلى من ف الوجود</h2>
+      <p>
+        لنجمتي و كاتبتي .. ما اعرف شو اقول ولا أقدر أعبر عن كل اللي في قلبي،
+        لكني أريدك أن تعرفي أن وجودك في حياتي هو أهدى الأشياء وأنك كل السكينة
+        والفرح والدفء اللي أحتاجه. <br><br>
+        ادعيلك الله يرزقك الصحة والعافية وراحة البال، ويكتب لك في عامك الجديد
+        من الخير أكثر مما تتمنين، ويجعل كل خطوة تمرينها مليئة بالفرح والقبول
+        والطمأنينة. <br><br>
+        كل عام وأنتِ أقرب الناس إلى قلبي، وكل ذكرى جمعتنا فيها كانت نورًا
+        في حياتي، وكل لحظة وقفت فيها بجانبي جعلتني أقدر قيمة وجودك.
+        أحبكِ أكثر من أي كلمة قادرة على الوصف، وأحب أن أراكِ بخير،
+        مبسوطة، وملؤة حياتك بالفرح. <br><br>
+        كل عام وأنتِ سكينة قلبي، وأنيسة أيامه، وسندُه، وأجمل صدفة
+        في حياتي، وأقرب شخص إلى روحي. <br><br>
+        عيد ميلاد سعيد يـ سعادة الدنيا، وربي يحفظك، ويرزقك كل ما تمنيته
+        ودون ما تشعرين به، ويجعل كل أيامك مليئة بالحب والسلام.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const startScene = document.getElementById('startScene');
+    const heartScene = document.getElementById('heartScene');
+    const starScene = document.getElementById('starScene');
+    const finalScene = document.getElementById('finalScene');
+    const startBtn = document.getElementById('startBtn');
+    const heartBtn = document.getElementById('heartBtn');
+    const starBtn = document.getElementById('starBtn');
+    const heartFill = document.getElementById('heartFill');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+
+    let fillAmount = 0;
+
+    startBtn.addEventListener('click', () => {
+      startScene.classList.add('hidden');
+      heartScene.classList.remove('hidden');
+      createSparkles();
+    });
+
+    heartBtn.addEventListener('click', () => {
+      fillAmount += 12;
+
+      if (fillAmount > 100) fillAmount = 100;
+
+      heartFill.style.transform = `scaleY(${fillAmount / 100})`;
+      progressFill.style.width = `${fillAmount}%`;
+      progressText.textContent = `${fillAmount}%`;
+
+      if (fillAmount >= 100) {
+        setTimeout(() => {
+          heartScene.classList.add('hidden');
+          starScene.classList.remove('hidden');
+        }, 300);
+      }
+    });
+
+    starBtn.addEventListener('click', () => {
+      starScene.classList.add('hidden');
+      finalScene.classList.remove('hidden');
+    });
+
+    function createSparkles() {
+      const sparklesContainer = document.getElementById('sparkles');
+      sparklesContainer.innerHTML = '';
+
+      for (let i = 0; i < 28; i++) {
+        const s = document.createElement('span');
+        s.className = 'sparkle';
+        s.style.left = `${Math.random() * 100}%`;
+        s.style.top = `${Math.random() * 15}%`;
+        s.style.animationDelay = `${(Math.random() * 2.5).toFixed(2)}s`;
+        s.style.animationDuration = `${(3 + Math.random() * 2.8).toFixed(2)}s`;
+        s.style.transform = `scale(${0.5 + Math.random() * 1.4})`;
+        sparklesContainer.appendChild(s);
+      }
+    }
+  </script>
+</body>
+</html>
